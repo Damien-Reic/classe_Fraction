@@ -1,6 +1,6 @@
 class Fraction:
-    """Fraction class to help with float impresision
-       !!! Be careful if you put float in an instance, it will not crash but it will round the float !!!
+    """Fraction class to help with float imprecision
+    !!! Be careful if you put float in an instance, it will not crash but it will round the float !!!
     """
     def __init__(self, num, denom = 1) -> 'Fraction':
         if denom < 0:
@@ -9,7 +9,7 @@ class Fraction:
             num = round(num)
         if isinstance(denom, float):
             denom = round(denom)
-        self.plus_grand_diviseur_commun = Fraction.get_pgdc(num = num, denom = denom)
+        self.plus_grand_diviseur_commun = self.get_pgdc(num = num, denom = denom)
         self.__num = int(num / self.plus_grand_diviseur_commun)
         self.__denom = int(denom / self.plus_grand_diviseur_commun)
 
@@ -33,7 +33,7 @@ class Fraction:
         elif isinstance(autre, int) or isinstance(autre, float):
             return self.__lt__(Fraction(autre))
         else:
-           raise TypeError(f"{type(autre)} n'est pas supporté")
+            raise TypeError(f"{type(autre)} n'est pas supporté")
     
     def __gt__(self, autre: 'Fraction') -> bool:
         if isinstance(autre, Fraction):
@@ -96,9 +96,9 @@ class Fraction:
                 return Fraction(self.__num ** autre, self.__denom ** autre)
         else:
             raise TypeError(f"La puissance doit être un entier, pas un {type(autre)}")
-            
-    @staticmethod
-    def get_pgdc(frac :'Fraction' = None, num : int = None, denom : int = None) -> int:
+    
+    @classmethod      
+    def get_pgdc(self, num : int, denom : int) -> int:
         if isinstance(num, int) and isinstance(denom, int):
             if num == 0 or denom == 0:
                 return num if num > 0 else 1
@@ -106,8 +106,6 @@ class Fraction:
                 return Fraction.get_pgdc(num = abs(num),denom = abs(denom))
             if denom != 0:
                 return Fraction.get_pgdc(num = denom, denom = num % denom)
-        if isinstance(frac, Fraction):
-            return Fraction.get_pgdc(num = frac.__num,denom = frac.__denom)
         raise TypeError("Invalid type for the get_pgdc arguments")
 
     def to_decimal(self) -> float:
@@ -130,3 +128,11 @@ class Fraction:
     
     def get_denom(self) -> int:
         return self.__denom
+
+
+
+
+if __name__ == '__main__':
+    frac = Fraction(1,2)
+    frac = Fraction(5000,2)
+    print(frac)
