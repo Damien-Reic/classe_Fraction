@@ -9,9 +9,9 @@ class Fraction:
             num = round(num)
         if isinstance(denom, float):
             denom = round(denom)
-        self.plus_grand_diviseur_commun = self.get_pgdc(num = num, denom = denom)
-        self.__num = int(num / self.plus_grand_diviseur_commun)
-        self.__denom = int(denom / self.plus_grand_diviseur_commun)
+        pgdc = self.get_pgdc(num, denom)
+        self.__num = int(num / pgdc)
+        self.__denom = int(denom / pgdc)
 
     def __repr__(self) -> str:
         return f"Fraction({self.__num},{self.__denom})"
@@ -134,5 +134,4 @@ class Fraction:
 
 if __name__ == '__main__':
     frac = Fraction(1,2)
-    frac = Fraction(5000,2)
-    print(frac)
+    
