@@ -1,6 +1,6 @@
 class Fraction:
     """Fraction class to help with float imprecision
-    !!! Be careful if you put float in an instance, it will not crash but it will round the float !!!
+    !!! Be careful if you put float in an instance, it will round the float !!!
     """
     def __init__(self, num, denom = 1) -> 'Fraction':
         if denom < 0:
